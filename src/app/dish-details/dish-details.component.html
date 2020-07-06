@@ -1,0 +1,40 @@
+<div class="container" fxLayout="row" fxLayout.sm="column" fxLayout.xs="column"
+    fxLayout.Align.gt-md="space-around center" fxLayoutGap="60px" fxLayoutGap.xs="0">
+
+    <div fxFlex="40" >
+        <mat-card *ngIf="dish">
+            <mat-card-header>
+                <mat-card-title>{{dish.name | uppercase}}</mat-card-title>
+            </mat-card-header>
+
+            <img mat-card-image src="{{dish.image}}" alt="{{dish.name}}">
+            <map-card-content>
+                <p>{{dish.description}}</p>
+            </map-card-content>
+            <hr>
+            <mat-card-action>
+                <button mat-button>LIKE</button>
+                <button mat-button>SHARE</button>
+            </mat-card-action>
+        </mat-card>
+    </div>
+
+    <div fxFlex="40" *ngIf="dish">
+        <h2 matSubheader>Comments</h2>
+        <mat-list *ngFor="let cmt of dish.comments">
+            <mat-list-item>
+                <!-- <p matLine><img height="27" width="30" src="/assets/images/cmt.png"><span>{{cmt.comment}} </span></p>
+                <p matLine><img height="27" width="30" src="/assets/images/rating.jfif"><span>  {{  cmt.rating}} </span></p>
+                <p matLine><img height="27" width="30" src="/assets/images/man.png"><span>--{{cmt.author}} </span></p>
+                <p matLine><img height="27" width="30" src="/assets/images/date.png"><span>{{cmt.date | date}}</span></p> -->
+                <p matLine><span>{{cmt.comment}} </span></p>
+                <p matLine><span>  {{  cmt.rating}} </span></p>
+                <p matLine><span>--{{cmt.author}} </span>   <span>{{cmt.date | date}}</span></p>
+                <mat-divider></mat-divider>
+            </mat-list-item>
+        </mat-list>
+
+    </div>
+
+
+</div>
