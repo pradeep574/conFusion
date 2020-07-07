@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Dish } from '../shared/dish';
-import { DISHES } from '../shared/dishes';
+/* This is not how to get the details ideally  */
+/* import { DISHES } from '../shared/dishes'; */
+
+/* It need to be injected using the services */
+import { DishService } from '../services/dish.service';
 
 @Component({
   selector: 'app-menu',
@@ -9,13 +13,14 @@ import { DISHES } from '../shared/dishes';
 })
 export class MenuComponent implements OnInit {
 
-  dishes: Dish[] = DISHES;
+  dishes: Dish[];
 
   selectedDish: Dish;
 
-  constructor() { }
+  constructor(private dishService: DishService) { }
 
   ngOnInit(): void {
+      this.dishes = this.dishService.getDishes();
   }
 
   onSelect(dish: Dish){
