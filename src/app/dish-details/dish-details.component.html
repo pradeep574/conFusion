@@ -1,7 +1,7 @@
 <div class="container" fxLayout="row" fxLayout.sm="column" fxLayout.xs="column"
     fxLayout.Align.gt-md="space-around center" fxLayoutGap="60px" fxLayoutGap.xs="0">
 
-    <div fxFlex="40" >
+    <div fxFlex="100" >
         <mat-card *ngIf="dish">
             <mat-card-header>
                 <mat-card-title>{{dish.name | uppercase}}</mat-card-title>
@@ -13,6 +13,7 @@
             </map-card-content>
             <hr>
             <mat-card-action>
+                <button mat-button (click)="goBack()">BACK</button>
                 <button mat-button>LIKE</button>
                 <button mat-button>SHARE</button>
             </mat-card-action>
