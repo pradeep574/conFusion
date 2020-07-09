@@ -34,7 +34,7 @@ export const LEADERS: Leader[] = [
   {
     id: '3',
     name: 'Pradeep Reddy',
-    image: '/assets/images/featured.JPG',
+    image: '/assets/images/alberto.png',
     designation: 'Executive Chef',
     abbr: 'EC',
     featured: true,
