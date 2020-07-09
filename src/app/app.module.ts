@@ -7,7 +7,11 @@ import { MatListModule } from '@angular/material/list'
 import { MatGridListModule } from '@angular/material/grid-list'
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
-import { MatDialogModule }  from '@angular/material/dialog'; 
+import { MatDialogModule }  from '@angular/material/dialog';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { FormsModule }  from '@angular/forms'; 
 import { AppComponent } from './app.component';
 
 import 'hammerjs';
@@ -42,13 +46,17 @@ import { LoginComponent } from './login/login.component';
     BrowserModule,
     BrowserAnimationsModule,
     MatToolbarModule,
+    FormsModule,
     FlexLayoutModule,
     MatListModule,
     MatCardModule,
     MatButtonModule,
     MatGridListModule,
-    AppRoutingModule,
-    MatDialogModule
+    MatDialogModule,
+    MatCheckboxModule,
+    MatFormFieldModule,
+    MatInputModule,
+    AppRoutingModule
   ],
   entryComponents: [
     LoginComponent
