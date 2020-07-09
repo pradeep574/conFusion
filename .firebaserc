@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "confusion-40993": {
+      "hosting": {
+        "conFusion": [
+          "confusion-40993"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "confusion-40993"
+  }
+}
