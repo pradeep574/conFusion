@@ -24,7 +24,7 @@ export class LeaderService {
 
   // These will return the promises instead of returning the direct values
 
-  getLeaders(): Promise<Leader[]> {
+  /* getLeaders(): Promise<Leader[]> {
     return Promise.resolve(LEADERS);
   }
   getLeader(id: string): Promise<Leader> {
@@ -33,5 +33,25 @@ export class LeaderService {
 
   getFeaturedLeader(): Promise<Leader> {
     return Promise.resolve(LEADERS.filter((leader) => leader.featured)[0]);
+  } */
+
+  // We introduce the delay explicitly For the sake of understanding that there will be delay in the Real World Application to fethc the deatils
+
+  getLeaders(): Promise<Leader[]> {
+    return new Promise(resolve => {
+      setTimeout(() => resolve(LEADERS),2000);
+    }); 
   }
+  getLeader(id: string): Promise<Leader> {
+    return new Promise(resolve =>{
+      setTimeout(() => resolve(LEADERS.filter((leader) => leader.id === id)[0]),2000);
+    }); 
+  }
+
+  getFeaturedLeader(): Promise<Leader> {
+    return new Promise(resolve => {
+      setTimeout(() => resolve(LEADERS.filter((leader) => leader.featured)[0]) ,2000);
+    }); 
+  }
+
 }

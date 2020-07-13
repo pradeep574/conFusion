@@ -27,15 +27,35 @@ export class DishService {
 
   // These will return the promises instead of returning the direct values
 
+  /*  getDishes(): Promise<Dish[]> {
+     return Promise.resolve(DISHES);
+   }
+ 
+   getDish(id: string): Promise<Dish> {
+     return Promise.resolve(DISHES.filter((dish) => dish.id === id)[0]);
+   }
+ 
+   getFeaturedDish(): Promise<Dish> {
+     return Promise.resolve(DISHES.filter((dish) => dish.featured)[0]);
+   } */
+
+  // We introduce the delay explicitly For the sake of understanding that there will be delay in the Real World Application to fethc the deatils
+
   getDishes(): Promise<Dish[]> {
-    return Promise.resolve(DISHES);
+    return new Promise(resolve => {
+      setTimeout(() => resolve(DISHES), 2000);
+    });
   }
 
   getDish(id: string): Promise<Dish> {
-    return Promise.resolve(DISHES.filter((dish) => dish.id === id)[0]);
+    return new Promise(resolve => {
+      setTimeout(() => resolve(DISHES.filter((dish) => dish.id === id)[0]), 2000);
+    });
   }
 
   getFeaturedDish(): Promise<Dish> {
-    return Promise.resolve(DISHES.filter((dish) => dish.featured)[0]);
-  }
+    return new Promise(resolve => {
+      setTimeout(() => resolve(DISHES.filter((dish) => dish.featured)[0]), 2000);
+  });
+}
 }
