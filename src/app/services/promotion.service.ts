@@ -10,6 +10,8 @@ export class PromotionService {
 
   constructor() { }
 
+// These are configured to return the direct values
+  /* 
   getPromotions(): Promotion[] {
     return PROMOTIONS;
   }
@@ -20,5 +22,19 @@ export class PromotionService {
 
   getFeaturedPromotion(): Promotion {
     return PROMOTIONS.filter((promo) => promo.featured)[0];
-  }
+  } */
+
+// These will return the promises instead of returning the direct values
+
+getPromotions(): Promise<Promotion[]> {
+  return Promise.resolve(PROMOTIONS);
+}
+
+getPromotion(id: string): Promise<Promotion> {
+  return Promise.resolve(PROMOTIONS.filter((promo) => promo.id === id)[0]);
+}
+
+getFeaturedPromotion(): Promise<Promotion> {
+  return Promise.resolve(PROMOTIONS.filter((promo) => promo.featured)[0]);
+}  
 }
