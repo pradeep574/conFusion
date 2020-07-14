@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Promotion } from '../shared/promotion';
 import { PROMOTIONS } from '../shared/promotions';
-
+import { of, observable, Observable } from 'rxjs';
+import { delay } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -41,8 +42,8 @@ export class PromotionService {
 
   // We introduce the delay explicitly For the sake of understanding that there will be delay in the Real World Application to fethc the deatils
 
-
-  getPromotions(): Promise<Promotion[]> {
+/*
+   getPromotions(): Promise<Promotion[]> {
     return new Promise(resolve => {
       //Set delay of 2 secs
       setTimeout(() => resolve(PROMOTIONS), 2000);
@@ -59,5 +60,33 @@ export class PromotionService {
     return new Promise(resolve => {
       setTimeout(() => resolve(PROMOTIONS.filter((promo) => promo.featured)[0]), 2000);
     });
+  } */
+
+  //Use of Observables i.e., rxJs. So here we send the using 'of' operator and convert it to promise
+  /* 
+  getPromotions(): Promise<Promotion[]> {
+    return of(PROMOTIONS).pipe(delay(2000)).toPromise();
   }
-}
+  
+  getPromotion(id: string): Promise<Promotion> {
+    return of(PROMOTIONS.filter((promo) => promo.id === id)[0]).pipe(delay(2000)).toPromise();
+  }
+  
+  getFeaturedPromotion(): Promise<Promotion> {
+    return of(PROMOTIONS.filter((promo) => promo.featured)[0]).pipe(delay(2000)).toPromise();
+  } 
+  */
+  //But when we use HTTP rxjs it fetches data in the form of Observables so the components has to handle the observable so we convert the above promises back to observable
+  getPromotions(): Observable<Promotion[]> {
+    return of(PROMOTIONS).pipe(delay(2000));
+  }
+
+  getPromotion(id: string): Observable<Promotion> {
+    return of(PROMOTIONS.filter((promo) => promo.id === id)[0]).pipe(delay(2000));
+  }
+  
+    getFeaturedPromotion(): Observable<Promotion> {
+      return of(PROMOTIONS.filter((promo) => promo.featured)[0]).pipe(delay(2000));
+    } 
+  }  
+  
