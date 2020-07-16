@@ -7,7 +7,7 @@
                 <mat-card-title>{{dish.name | uppercase}}</mat-card-title>
             </mat-card-header>
 
-            <img mat-card-image src="{{dish.image}}" alt="{{dish.name}}">
+            <img mat-card-image src="{{BaseURL + dish.image}}" alt="{{dish.name}}">
             <map-card-content>
                 <p>{{dish.description}}</p>
             </map-card-content>
@@ -44,7 +44,7 @@
         </div>
 
         <div fxFlex flexOffset="20px" class="form-size form">
-            <pre>{{commentForm.get('author').value}}
+            <pre [hidden]="commentForm.invalid">{{commentForm.get('author').value}}
 {{commentForm.get('rating').value}}
 {{commentForm.get('comment').value}}
             </pre>

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Inject } from '@angular/core';
 import { Params, ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
@@ -44,6 +44,7 @@ export class DishDetailsComponent implements OnInit {
 
   constructor(private dishService: DishService,
     private location: Location,
+    @Inject("BaseURL") private BaseURL,
     private route: ActivatedRoute, private fb: FormBuilder) { this.createForm(); }
 
   ngOnInit(): void {
@@ -97,10 +98,11 @@ export class DishDetailsComponent implements OnInit {
 
   onSubmit() {
     this.comment = this.commentForm.value;
-    var d = new Date();
-    var month = d.toDateString().substring(4, 7);
+    const date = new Date();
+    /* var month = d.toDateString().substring(4, 7);
     const final = (this.commentForm.get('author').value+" "+ month +" "+ d.getDate() + ', ' +d.getFullYear());
-    this.commentForm.controls['author'].setValue(final);
+    this.commentForm.controls['author'].setValue(final); */
+    this.comment.date = date.toISOString();
     this.dish.comments.push(this.commentForm.value);
     this.commentForm.reset({
       author: '',

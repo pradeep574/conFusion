@@ -2,7 +2,9 @@ import { Injectable } from '@angular/core';
 import { Leader } from '../shared/leader';
 import { LEADERS } from '../shared/leaders';
 import { of, observable, Observable } from 'rxjs';
-import { delay } from 'rxjs/operators';
+import { delay, map} from 'rxjs/operators';
+import { HttpClient } from '@angular/common/http';
+import { baseURL} from '../shared/baseurl';
 
 import { from } from 'rxjs';
 
@@ -11,7 +13,7 @@ import { from } from 'rxjs';
 })
 export class LeaderService {
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   // These are configured to return the direct values
   /* getLeaders() : Leader[] {
@@ -74,13 +76,16 @@ export class LeaderService {
   //But when we use HTTP rxjs it fetches data in the form of Observables so the components has to handle the observable so we convert the above promises back to observable
   
     getLeaders(): Observable<Leader[]> {
-      return of(LEADERS).pipe(delay(2000));
+      //return of(LEADERS).pipe(delay(2000));
+      return this.http.get<Leader[]>(baseURL+'leadership');
     }
     getLeader(id: string): Observable<Leader> {
-      return of(LEADERS.filter((leader) => leader.id === id)[0]).pipe(delay(2000));
+      //return of(LEADERS.filter((leader) => leader.id === id)[0]).pipe(delay(2000));
+      return this.http.get<Leader>(baseURL+'leadership/'+id);
     }
   
   getFeaturedLeader(): Observable<Leader> {
-    return of(LEADERS.filter((leader) => leader.featured)[0]).pipe(delay(2000));
+    //return of(LEADERS.filter((leader) => leader.featured)[0]).pipe(delay(2000));
+    return this.http.get<Leader[]>(baseURL+'leadership?featured=true').pipe(map(leadership => leadership[0]));
   }
 }
