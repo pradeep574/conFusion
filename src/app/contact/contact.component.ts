@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild} from '@angular/core';
-import { FormBuilder, Validator, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Feedback, ContactType } from "../shared/feedback";
 
 @Component({
@@ -40,7 +40,7 @@ export class ContactComponent implements OnInit {
     'email': {
       'required':      'Email is required.',
       'email':         'Email not in valid format.'
-    },
+    }
   };
 
   constructor(private fb: FormBuilder) {
@@ -97,6 +97,6 @@ export class ContactComponent implements OnInit {
       contacttype: 'None',
       message: ''
     });
-    this.feedbackFormDirective.resetForm()
+    this.feedbackFormDirective.resetForm();
   }
 }
