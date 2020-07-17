@@ -42,6 +42,8 @@ import { LoginComponent } from './login/login.component';
 import { baseURL } from './shared/baseurl';
 
 import { from } from 'rxjs';
+import { HighlightDirective } from './directives/highlight.directive';
+import { PopDirective } from './directives/pop.directive';
 
 @NgModule({
   declarations: [
@@ -53,7 +55,9 @@ import { from } from 'rxjs';
     HomeComponent,
     AboutComponent,
     ContactComponent,
-    LoginComponent
+    LoginComponent,
+    HighlightDirective,
+    PopDirective
   ],
   imports: [
     BrowserModule,
