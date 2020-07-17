@@ -69,9 +69,13 @@
             </form>
         </div>
     </div>
-    <div fxFlex [hidden]="dish">
+    <div fxFlex [hidden]="dish || errMess">
         <mat-spinner></mat-spinner>
         <h3>Loading... Please Wait</h3>
+    </div>
+    <div fxFlex *ngIf="errMess">
+        <h3>Error</h3>
+        <h4>{{errMess}}</h4>
     </div>
 
 
