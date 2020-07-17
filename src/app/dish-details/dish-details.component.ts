@@ -4,28 +4,25 @@ import { Location } from '@angular/common';
 
 import { Dish } from '../shared/dish';
 import { DishService } from '../services/dish.service';
-import { switchMap } from 'rxjs/operators';
+import { switchMap} from 'rxjs/operators';
 import { FormBuilder, Validator, FormGroup, Validators } from '@angular/forms';
 import { Comment } from '../shared/comments';
 import { state,style,transition,trigger,animate } from '@angular/animations';
+import { visibility,flyInOut,expand } from '../animations/app.animation';
+
 
 @Component({
   selector: 'app-dish-details',
   templateUrl: './dish-details.component.html',
   styleUrls: ['./dish-details.component.scss'],
-  
+  host: {
+    '[@flyInout]': 'true',
+    'style' : 'display: block;'
+  },
   animations: [
-    trigger('visibility', [
-        state('shown', style({
-            transform: 'scale(1.0)',
-            opacity: 1
-        })),
-        state('hidden', style({
-            transform: 'scale(0.5)',
-            opacity: 0
-        })),
-        transition('* => *', animate('0.2s linear'))
-    ])
+    visibility(),
+    flyInOut(),
+    expand()
   ]
 })
 
